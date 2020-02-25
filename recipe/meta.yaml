@@ -20,6 +20,7 @@ requirements:
     - pip
   run:
     - python
+    - pip
     - numpy >=1.0
     - matplotlib-base >1.1
     - molmod >=1.4.5
@@ -28,6 +29,8 @@ requirements:
 test:
   imports:
     - tamkin
+  commands:
+    - pip check
 
 about:
   home: https://github.com/molmod/tamkin
