@@ -28,6 +28,8 @@ requirements:
 test:
   imports:
     - tamkin
+  commands:
+    - pip check
 
 about:
   home: https://github.com/molmod/tamkin
