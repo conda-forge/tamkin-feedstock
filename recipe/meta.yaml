@@ -6,20 +6,21 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: fd96f36589a86a72fc9362a7141a6c731d51f76294a54eed225646df280c8b67
 
 build:
-  number: 3
+  number: 4
   script: "{{ PYTHON }} -m pip install . -vv"
   noarch: python
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
+    - setuptools
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - pip
     - numpy >=1.0
     - matplotlib-base >1.1
@@ -27,6 +28,8 @@ requirements:
     - scipy >=0.17.1
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - tamkin
   commands:
