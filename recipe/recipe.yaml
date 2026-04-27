@@ -29,6 +29,7 @@ requirements:
     - matplotlib-base >1.1
     - molmod >=1.4.5
     - scipy >=0.17.1
+    - setuptools <81
 
 tests:
   - python:
