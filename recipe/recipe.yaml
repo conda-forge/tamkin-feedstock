@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: tamkin
+  version: "1.2.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: fd96f36589a86a72fc9362a7141a6c731d51f76294a54eed225646df280c8b67
+
+build:
+  number: 5
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools <81
+  run:
+    - python >=${{ python_min }}
+    - pip
+    - numpy >=1.0
+    - matplotlib-base >1.1
+    - molmod >=1.4.5
+    - scipy >=0.17.1
+    - setuptools <81
+
+tests:
+  - python:
+      imports:
+        - tamkin
+      pip_check: true
+      python_version: ${{ python_min }}
+
+about:
+  license: GPL-3.0-only
+  license_file: COPYING
+  summary: TAMkin is a post-processing toolkit for thermochemistry and kinetics analysis.
+  description: |
+    TAMkin is a post-processing toolkit for normal mode analysis,
+    thermochemistry and reaction kinetics. It uses a Hessian computation
+    from a standard computational chemistry program as its input. CHARMM,
+    CP2K, CPMD, GAMESS, GAUSSIAN, QCHEM and VASP are supported.
+  homepage: https://github.com/molmod/tamkin
+  repository: https://github.com/molmod/tamkin
+  documentation: http://molmod.github.com/tamkin
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
+    - tovrstra
